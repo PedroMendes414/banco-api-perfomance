@@ -34,7 +34,7 @@ banco-api-perfomance/
 │   ├── login.test.js
 │   └── transferencias.test.js
 │
-├── utils/                # Funções utilitárias (variáveis globais, etc.)
+├── utils/                # Funções utilitárias reutilizaveis para a interação com a API (variáveis globais, etc.)
 │   └── variaveis.js
 │
 └── .gitignore
@@ -93,22 +93,22 @@ $env:BASE_URL="http://localhost:3000"; k6 run tests/login.test.js
 ### 2. Executar os testes diretamente  
 Login:  
 ```bash
-BASE_URL=http://localhost:3000 k6 run tests/login.test.js
+ k6 run tests/login.test.js -e BASE_URL=http://localhost:3000
 ```
 
 Transferências:  
 ```bash
-BASE_URL=http://localhost:3000 k6 run tests/transferencias.test.js
+k6 run tests/transferencias.test.js -e BASE_URL=http://localhost:3000
 ```
 
 ### 3. Acompanhar resultados em tempo real  
 ```bash
-BASE_URL=http://localhost:3000 K6_WEB_DASHBOARD=true k6 run tests/login.test.js
+K6_WEB_DASHBOARD=true k6 run tests/login.test.js -e BASE_URL=http://localhost:3000
 ```
 
 ### 4. Exportar relatório em HTML  
 ```bash
-BASE_URL=http://localhost:3000 K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=html-report.html k6 run tests/transferencias.test.js
+K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=html-report.html k6 run tests/transferencias.test.js -e BASE_URL=http://localhost:3000
 ```
 
 O arquivo `html-report.html` será gerado na raiz do projeto e pode ser aberto em qualquer navegador.  
